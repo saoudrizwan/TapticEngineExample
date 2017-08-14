@@ -62,8 +62,7 @@ class ViewController: UIViewController {
         super.viewDidAppear(animated)
         
         // Wake up the haptic engine
-        // https://stackoverflow.com/a/42057620/3502608
-        // "Informs self that it will likely receive events soon, so that it can ensure minimal latency for any feedback generated safe to call more than once before the generator receives an event, if events are still imminently possible."
+        // "Informs self that it will likely receive events soon, so that it can ensure minimal latency for any feedback generated. Safe to call more than once before the generator receives an event, if events are still imminently possible."
         feedbackGenerator.selection.prepare()
         feedbackGenerator.notification.prepare()
         feedbackGenerator.impact.light.prepare()
