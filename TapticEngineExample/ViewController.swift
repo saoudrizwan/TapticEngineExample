@@ -6,9 +6,10 @@
 //  Copyright © 2017 Saoud Rizwan. All rights reserved.
 //
 
+// Need to import to access Haptic Feedback frameworks
 import UIKit
 
-// Need to import to access Vibrator
+// Need to import to access 1st generation vibrator/Taptic Engine
 import AudioToolbox.AudioServices
 
 class ViewController: UIViewController {
@@ -21,7 +22,7 @@ class ViewController: UIViewController {
         return tableView
     }()
     
-    lazy var feedbackGenerator: (notification: UINotificationFeedbackGenerator, impact: (light: UIImpactFeedbackGenerator, medium: UIImpactFeedbackGenerator, heavy: UIImpactFeedbackGenerator), selection: UISelectionFeedbackGenerator) = {
+    let feedbackGenerator: (notification: UINotificationFeedbackGenerator, impact: (light: UIImpactFeedbackGenerator, medium: UIImpactFeedbackGenerator, heavy: UIImpactFeedbackGenerator), selection: UISelectionFeedbackGenerator) = {
         return (notification: UINotificationFeedbackGenerator(), impact: (light: UIImpactFeedbackGenerator(style: .light), medium: UIImpactFeedbackGenerator(style: .medium), heavy: UIImpactFeedbackGenerator(style: .heavy)), selection: UISelectionFeedbackGenerator())
     }()
     
@@ -93,10 +94,10 @@ extension ViewController: UITableViewDataSource {
         let unsupported = " (UNSUPPORTED)"
         switch section {
         case 0:
-            // < iPhone 6
+            // < iPhone 6S
             break
         case 1:
-            // iPhone 6 Taptic Engine
+            // iPhone 6S Taptic Engine
             if UIDevice.current.hasTapticEngine {
                 title.append(supported)
             } else {
@@ -129,10 +130,10 @@ extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.section {
         case 0:
-            // < iPhone 6
+            // < iPhone 6S
             switch indexPath.row {
             case 0:
-                // Vibrate
+                // Basic vibration
                 let vibrate = SystemSoundID(kSystemSoundID_Vibrate) // 1352
                 AudioServicesPlaySystemSoundWithCompletion(vibrate, {
                     print("did vibrate")
@@ -141,7 +142,7 @@ extension ViewController: UITableViewDelegate {
                 break
             }
         case 1:
-            // iPhone 6
+            // iPhone 6S 1st Generation Taptic Engine
             switch indexPath.row {
             case 0:
                 // Peek
@@ -164,7 +165,7 @@ extension ViewController: UITableViewDelegate {
             default:
                 break
             }
-        case 0:
+        case 2:
             // UINotificationFeedbackGenerator
             switch indexPath.row {
             case 0:
@@ -179,7 +180,7 @@ extension ViewController: UITableViewDelegate {
             default:
                 break
             }
-        case 1:
+        case 3:
             // UIImpactFeedbackGenerator
             switch indexPath.row {
             case 0:
@@ -194,7 +195,7 @@ extension ViewController: UITableViewDelegate {
             default:
                 break
             }
-        case 2:
+        case 4:
             // UISelectionFeedbackGenerator
             switch indexPath.row {
             case 0:
