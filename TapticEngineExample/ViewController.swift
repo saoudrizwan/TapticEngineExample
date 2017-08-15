@@ -17,7 +17,7 @@ class ViewController: UIViewController {
     let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.backgroundColor = UIColor.groupTableViewBackground
-        tableView.separatorColor = UIColor.gray.withAlphaComponent(0.4)
+        tableView.separatorColor = UIColor.gray.withAlphaComponent(0.5)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
