@@ -27,8 +27,8 @@ class ViewController: UIViewController {
     }()
     
     let sections: [(title: String, options: [String])] = [
-        ("Basic", ["Vibrate"]),
-        ("Taptic Engine", ["Peek", "Pop", "Error"]),
+        ("Basic", ["Standard Vibration", "Alert Vibration"]),
+        ("Taptic Engine", ["Peek", "Pop", "Cancelled", "Try Again", "Failed"]),
         ("Haptic Feedback - Notification", ["Success", "Warning", "Error"]),
         ("Haptic Feedback - Impact", ["Light", "Medium", "Heavy"]),
         ("Haptic Feedback - Selection", ["Selection"])
@@ -132,10 +132,16 @@ extension ViewController: UITableViewDelegate {
             // < iPhone 6S
             switch indexPath.row {
             case 0:
-                // Basic vibration
-                let vibrate = SystemSoundID(kSystemSoundID_Vibrate) // 1352
-                AudioServicesPlaySystemSoundWithCompletion(vibrate, {
-                    print("did vibrate")
+                // Standard vibration
+                let standard = SystemSoundID(kSystemSoundID_Vibrate) // 4095
+                AudioServicesPlaySystemSoundWithCompletion(standard, {
+                    print("did standard vibrate")
+                })
+            case 1:
+                // Alert vibration
+                let alert = SystemSoundID(1011)
+                AudioServicesPlaySystemSoundWithCompletion(alert, {
+                    print("did alert vibrate")
                 })
             default:
                 break
@@ -156,10 +162,22 @@ extension ViewController: UITableViewDelegate {
                     print("did pop")
                 })
             case 2:
-                // Error
-                let error = SystemSoundID(1521)
-                AudioServicesPlaySystemSoundWithCompletion(error, {
-                    print("did error")
+                // Cancelled
+                let cancelled = SystemSoundID(1521)
+                AudioServicesPlaySystemSoundWithCompletion(cancelled, {
+                    print("did cancelled")
+                })
+            case 3:
+                // Try Again
+                let tryAgain = SystemSoundID(1102)
+                AudioServicesPlaySystemSoundWithCompletion(tryAgain, {
+                    print("did try again")
+                })
+            case 4:
+                // Failed
+                let failed = SystemSoundID(1107)
+                AudioServicesPlaySystemSoundWithCompletion(failed, {
+                    print("did failed")
                 })
             default:
                 break
