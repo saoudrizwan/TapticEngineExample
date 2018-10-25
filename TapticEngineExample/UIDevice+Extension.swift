@@ -9,6 +9,11 @@
 import UIKit
 
 extension UIDevice {
+    
+    var iPhone7AndAbove: Bool {
+        return hasHapticFeedback
+    }
+    
     enum DevicePlatform: String {
         case other = "Old Device"
         case iPhone6S = "iPhone 6S"
@@ -53,12 +58,7 @@ extension UIDevice {
         get {
             return platform == .iPhone6S
                 || platform == .iPhone6SPlus
-                || platform == .iPhone7
-                || platform == .iPhone7Plus
-                || platform == .iPhoneX
-                || platform == .iPhoneXs
-                || platform == .iPhoneXsMax
-                || platform == .iPhoneXr
+                || iPhone7AndAbove
         }
     }
     
